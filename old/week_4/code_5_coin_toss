@@ -1,0 +1,8 @@
+from random import choice
+
+
+if __name__ == "__main__":
+    result = choice(["Heads", "Tails"])
+
+    print(f"The coin landed on: {result}")
+    #come back to this, find a way to input your choice, then a message maybe when you get it right or wrong
