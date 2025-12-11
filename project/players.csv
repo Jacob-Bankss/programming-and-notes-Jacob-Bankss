@@ -1,11 +1,145 @@
-Firstname,Surname,Club,Goals,Assists,Appearances
-Erling,Haaland,Manchester City,36,8,33
-Mohamed,Salah,Liverpool,27,12,38
-Harry,Kane,Tottenham,30,3,37
-Bukayo,Saka,Arsenal,14,11,38
-Martin,Odegaard,Arsenal,15,7,37
-Kevin,De Bruyne,Manchester City,7,16,32
-Phil,Foden,Manchester City,11,7,35
-Son,Heung-Min,Tottenham,10,6,36
-Darwin,Nunez,Liverpool,9,4,29
-Gabriel,Jesus,Arsenal,11,5,26
+Firstname,Surname,Club,Appearances,Goals,Assists
+Bukayo,Saka,Arsenal,13,4,1
+Gabriel,Jesus,Arsenal,17,3,0
+Gabriel,Martinelli,Arsenal,11,1,0
+Viktor,Gyokeres,Arsenal,13,4,0
+Leandro,Trossard,Arsenal,11,4,3
+Noni,Madueke,Arsenal,9,0,0
+Ethan,Nwaneri,Arsenal,6,0,0
+Kai,Havertz,Arsenal,1,0,0
+Ollie,Watkins,Aston Villa,15,3,0
+Donyell,Malen,Aston Villa,15,4,1
+Jadon,Sancho,Aston Villa,7,0,0
+Morgan,Rogers,Aston Villa,15,3,3
+Evann,Guessand,Aston Villa,11,0,1
+Kevin,Schade,Brentford,15,3,1
+Igor,Thiago,Brentford,15,11,0
+Joshua,Dasilva,Brentford,0,0,0
+Reiss,Nelson,Brentford,3,0,0
+Fabio,Carvalho,Brentford,6,1,0
+Dango,Outtara,Brentford,14,3,0
+Myles,Peart-Harris,Brentford,0,0,0
+Gustavo,Gomes,Brentford,0,0,0
+Romelle,Donovan,Brentford,0,0,0
+Solly,March,Brighton,0,0,0
+Brajan,Gruda,Brighton,11,1,1
+Stefanos,Tzimas,Brighton,9,1,1
+Yankuba,Minteh,Brighton,15,1,4
+Tom,Watson,Brighton,2,0,0
+Danny,Welbeck,Brighton,15,7,0
+Kaoru,Mitoma,Brighton,6,1,1
+David,Brooks,Bournemouth,13,0,1
+Evanilson,,Bournemouth,13,1,0
+Ben,Doak,Bournemouth,4,0,1
+Marcus,Tavernier,Bournemouth,15,3,1
+Amine,Adli,Bournemouth,12,1,0
+Eli Junior,Kroupi,Bournemouth,11,4,0
+Antoine,Semenyo,Bournemouth,14,6,3
+Enes,Unal,Bournemouth,5,1,0
+Remy,Rees-Dottin,Bournemouth,0,0,0
+Jacob,Bruun Larsen,Burnley,13,0,1
+Lyle,Foster,Burnley,12,2,1
+Marcus,Edwards,Burnley,5,0,0
+Jaidon,Anthony,Burnley,15,4,1
+Loum,Tchaouna,Burnley,13,1,0
+Zian,Flemming,Burnley,12,5,0
+Zeki,Amdouni,Burnley,0,0,0
+Armando,Broja,Burnley,9,0,0
+Jaydon,Banel,Burnley,0,0,0
+Ashley,Barnes,Burnley,1,0,0
+Enock,Agyei,Burnley,0,0,0
+Mykhaylo,Mudryk,Chelsea,0,0,0
+Raheem,Sterling,Chelsea,0,0,0
+Pedro,Neto,Chelsea,15,5,2
+Liam,Delap,Chelsea,8,0,0
+Jamie,Gittens,Chelsea,11,0,2
+Joao,Pedro,Chelsea,15,4,3
+Tyrique,George,Chelsea,4,0,0
+Marc,Guiu,Chelsea,9,0,1
+Facundo,Buonanotte,Chelsea,1,0,0
+Estevao,,Chelsea,13,1,1
+Shumaira,Mheuka,Chelsea,0,0,0
+Edward,Nketiah,Crystal Palace,9,2,0
+Christantus,Uche,Crystal Palace,5,0,0
+Jean-Philippe,Mateta,Crystal Palace,15,7,0
+Dwight,McNeil,Everton,7,0,0
+Beto,,Everton,15,1,0
+Iliman,Ndiaye,Everton,15,4,2
+Thierno,Barry,Everton,15,1,0
+Jack,Grealish,Everton,14,2,4
+Tyler,Dibling,Everton,6,0,0
+Raul,Jimenez,Fulham,14,2,2
+Harry,Wilson,Fulham,14,4,1
+Rodrigo,Muniz,Fulham,7,1,1
+Adama,Traore,Fulham,10,0,0
+Alex,Iwobi,Fulham,15,2,2
+Jonah,Kusi-Asare,Fulham,2,0,0
+Samuel,Chukwueze,Fulham,8,2,3
+Kevin,,Fulham,12,0,0
+Daniel,James,Leeds,10,0,0
+Dominic,Calvert-Lewin,Leeds,13,4,0
+Joel,Piroe,Leeds,8,0,0
+Lukas,Nmecha,Leeds,14,4,0
+Noah,Okafor,Leeds,12,2,0
+Jack,Harrison,Leeds,10,0,0
+Wilfried,Gnonto,Leeds,7,0,0
+Alexander,Isak,Liverpool,8,1,1
+Mohamed,Salah,Liverpool,13,4,2
+Federico,Chiesa,Liverpool,10,2,1
+Cody,Gakpo,Liverpool,15,4,3
+Hugo,Ekitike,Liverpool,14,5,1
+Rio,Ngumoha,Liverpool,5,1,0
+Omar,Marmoush,Man City,9,0,1
+Erling,Haaland,Man City,15,15,3
+Rayan,Cherki,Man City,10,1,5
+Jeremy,Doku,Man City,15,1,4
+Savinho,,Man City,11,0,1
+Oscar,Bobb,Man City,9,0,1
+Joshua,Zirkzee,Man United,8,1,0
+Bryan,Mbeumo,Man United,15,6,1
+Benjamin,Sesko,Man United,11,2,1
+Chido,Obi,Man United,0,0,0
+Yoanna,Wissa,Newcastle,1,0,0
+Anthony,Gordon,Newcastle,10,2,0
+Harvey,Barnes,Newcastle,14,3,0
+William,Osula,Newcastle,10,1,0
+Anthony,Elanga,Newcastle,15,0,1
+Jacob,Murphy,Newcastle,12,2,1
+Nick,Woltemade,Newcastle,12,5,1
+Jacob,Ramsey,Newcastle,7,0,0
+Callum,Hudson-Odoi,Nottm Forest,14,1,0
+Taiwo,Awoniyi,Nottm Forest,4,0,0
+Chris,Wood,Nottm Forest,8,2,0
+Dan,Ndoye,Nottm Forest,14,1,1
+Arnaud,Kalimuendo-Muinga,Nottm Forest,7,0,0
+Igor,Jesus,Nottm Forest,14,1,0
+Omari,Hutchinson,Nottm Forest,10,0,2
+Abdoullah,Ba,Sunderland,2,2,0
+Chemsdine,Talbi,Sunderland,15,2,1
+Brian,Brobbey,Sunderland,10,2,1
+Eliezer,Mayenda,Sunderland,8,1,0
+Romaine,Mundle,Sunderland,2,0,0
+Wilson,Isidor,Sunderland,15,4,0
+Simon,Adingra,Sunderland,9,0,0
+Bretrand,Traore,Sunderland,9,1,0
+Ahmed,Abdullahi,Sunderland,0,0,0
+Ian,Poveda,Sunderland,2,2,2
+Richarlison,,Tottenham,15,6,2
+Mathys,Tel,Tottenham,10,2,0
+Dominic,Solanke,Tottenham,2,0,0
+Mohammed,Kudus,Tottenham,14,2,5
+Dejan,Kulusevski,Tottenham,0,0,0
+Brennan,Johnson,Tottenham,13,2,0
+Wilson,Odobert,Tottenham,14,0,1
+Randal,Kolo Muani,Tottenham,8,0,0
+Dane,Scarlett,Tottenham,3,1,1
+Crysencio,Summerville,West Ham,10,0,1
+Callum,Wilson,West Ham,12,4,1
+Niclas,Fullkrug,West Ham,8,0,0
+Jarrod,Bowen,West Ham,15,4,1
+Callum,Marshall,West Ham,3,2,1
+Nathan,Fraser,Wolves,0,0,0
+Jorgen,Strand Larsen,Wolves,13,1,0
+Jhon,Arias,Wolves,14,0,0
+Hee-Chan,Hwang,Wolves,10,1,0
+Tolo,Arokodare,Wolves,11,0,0

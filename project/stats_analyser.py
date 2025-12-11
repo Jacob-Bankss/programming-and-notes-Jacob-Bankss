@@ -1,19 +1,24 @@
+# AI Assistance Declaration:
+# This program was created with assistance from generative AI (ChatGPT).
+# I have reviewed and tested all content and take full responsibility for the final work.
+
 import csv
 import sys
 import os
 
 
-
+# -------------------------------------------
 # Player class to store individual player data
-
+# -------------------------------------------
 class Player:
-    def __init__(self, firstname, surname, club, goals, assists, appearances):
+    def __init__(self, firstname, surname, club, appearances, goals, assists):
+        # Store all player details, converting stats to integers
         self.firstname = firstname
         self.surname = surname
         self.club = club
+        self.appearances = int(appearances)
         self.goals = int(goals)
         self.assists = int(assists)
-        self.appearances = int(appearances)
 
     def full_name(self):
         return f"{self.firstname} {self.surname}"
@@ -22,14 +27,15 @@ class Player:
         return self.goals + self.assists
 
     def efficiency(self):
+        # Avoid division by zero if player has no appearances
         if self.appearances == 0:
-            return 0
+            return 0.0
         return self.goals / self.appearances
 
 
-
-# Read the CSV file and return a list of Player objects
-
+# ------------------------------------------------
+# the function that reads CSV and returns a list of players
+# ------------------------------------------------
 def load_players(filename):
     players = []
 
@@ -37,61 +43,62 @@ def load_players(filename):
         print(f"Error: File '{filename}' does not exist.")
         sys.exit(1)
 
-    with open(filename, newline="", encoding="utf-8") as csvfile:
-        reader = csv.DictReader(csvfile)
+    try:
+        with open(filename, newline="", encoding="utf-8") as csvfile:
+            reader = csv.DictReader(csvfile)
 
-        for row in reader:
-            try:
-                p = Player(
-                    row["Firstname"],
-                    row["Surname"],
-                    row["Club"],
-                    row["Goals"],
-                    row["Assists"],
-                    row["Appearances"],
-                )
-                players.append(p)
+            for row in reader:
+                try:
+                    # Create a Player object for each valid CSV row
+                    p = Player(
+                        row["Firstname"],
+                        row["Surname"],
+                        row["Club"],
+                        row["Appearances"],
+                        row["Goals"],
+                        row["Assists"],
+                    )
+                    players.append(p)
 
-            except Exception as e:
-                print(f"Warning: Skipping invalid row: {row} ({e})")
+                except Exception as e:
+                    # Skip rows with missing or invalid data
+                    print(f"Warning: Skipping invalid row: {row} ({e})")
+
+    except OSError as e:
+        print(f"Error reading file '{filename}': {e}")
+        sys.exit(1)
 
     return players
 
 
-
-# Generate rankings based on goals, assists, etc.
-
+# -----------------------------------------------------
+# All the Functions that generate the rankings and summary statistics
+# -----------------------------------------------------
 def rank_players(players, sort_key):
-    if sort_key == "goals":
-        return sorted(players, key=lambda p: p.goals, reverse=True)
+    """Return a list of players sorted by the chosen metric."""
+    match sort_key:
+        case "goals":
+            return sorted(players, key=lambda p: p.goals, reverse=True)
+        case "assists":
+            return sorted(players, key=lambda p: p.assists, reverse=True)
+        case "contributions":
+            return sorted(players, key=lambda p: p.total_contributions(), reverse=True)
+        case "efficiency":
+            return sorted(players, key=lambda p: p.efficiency(), reverse=True)
+        case _:
+            print(f"Unknown sort type '{sort_key}'. Defaulting to goals.")
+            return sorted(players, key=lambda p: p.goals, reverse=True)
 
-    elif sort_key == "assists":
-        return sorted(players, key=lambda p: p.assists, reverse=True)
-
-    elif sort_key == "contributions":
-        return sorted(players, key=lambda p: p.total_contributions(), reverse=True)
-
-    elif sort_key == "efficiency":
-        return sorted(players, key=lambda p: p.efficiency(), reverse=True)
-
-    else:
-        print(f"Unknown sort type '{sort_key}'. Defaulting to goals.")
-        return sorted(players, key=lambda p: p.goals, reverse=True)
-
-
-
-# Optional club filter
 
 def apply_club_filter(players, club_name):
+    """Return only players belonging to the specified club."""
     if club_name is None:
         return players
     return [p for p in players if p.club.lower() == club_name.lower()]
 
 
-
-# Print player rankings
-
 def print_ranking(players, sort_type, limit, outfile=None):
+    """Generate and print the ranking table."""
     ranking = rank_players(players, sort_type)
     header = f"=== Ranking by {sort_type.capitalize()} ===\n"
 
@@ -99,9 +106,11 @@ def print_ranking(players, sort_type, limit, outfile=None):
     for p in ranking[:limit]:
         output += (
             f"{p.full_name():25}  "
+            f"{p.club:15}   "
+            f"Apps: {p.appearances:2}   "
             f"Goals: {p.goals:2}  Assists: {p.assists:2}  "
-            f"Contrib: {p.total_contributions():2}  "
-            f"Eff: {p.efficiency():.2f}\n"
+            f"Contributions: {p.total_contributions():2}  "
+            f"Efficiency: {p.efficiency():.2f}\n"
         )
 
     print(output)
@@ -110,30 +119,31 @@ def print_ranking(players, sort_type, limit, outfile=None):
         outfile.write(output + "\n")
 
 
-
-# Club summary statistics
-
+# ---------------------------
+# Club summary
+# ---------------------------
 def print_club_summary(players, outfile=None):
+    """Print total club-level stats and identify each club's top contributor."""
     output = "\n=== Club Summary ===\n"
 
     clubs = {}
     for p in players:
         if p.club not in clubs:
-            clubs[p.club] = {"goals": 0, "assists": 0, "players.csv": []}
+            clubs[p.club] = {"goals": 0, "assists": 0, "players": []}
 
         clubs[p.club]["goals"] += p.goals
         clubs[p.club]["assists"] += p.assists
-        clubs[p.club]["players.csv"].append(p)
+        clubs[p.club]["players"].append(p)
 
     for club, stats in clubs.items():
-        top_player = max(stats["players.csv"], key=lambda p: p.total_contributions())
+        top_player = max(stats["players"], key=lambda p: p.total_contributions())
 
         block = (
             f"\n{club}\n"
             f" Total Goals:   {stats['goals']}\n"
             f" Total Assists: {stats['assists']}\n"
             f" Best Player: {top_player.full_name()} "
-            f"({top_player.total_contributions()} contributions)\n"
+            f"({top_player.total_contributions()} goal contributions)\n"
         )
 
         output += block
@@ -144,15 +154,18 @@ def print_club_summary(players, outfile=None):
         outfile.write(output + "\n")
 
 
-
-# Parse command-line arguments
-
+# -----------------------
+#Argumentparsing helper
+# -----------------------
 def parse_arguments():
+    """Interpret command-line arguments and return configuration values."""
     args = sys.argv[1:]
 
     if len(args) == 0:
-        print("Usage: python stats_analyser.py players.csv.csv "
-              "[--limit N] [--club NAME] [--sort TYPE] [--export FILE]")
+        print(
+            "Usage: python stats_analyser.py players.csv "
+            "[--limit N] [--club NAME] [--sort TYPE] [--export FILE]"
+        )
         sys.exit(1)
 
     filename = args[0]
@@ -163,46 +176,41 @@ def parse_arguments():
 
     i = 1
     while i < len(args):
-        if args[i] == "--limit":
-            limit = int(args[i + 1])
-            i += 2
-
-        elif args[i] == "--club":
-            club = args[i + 1]
-            i += 2
-
-        elif args[i] == "--sort":
-            sort_type = args[i + 1]
-            i += 2
-
-        elif args[i] == "--export":
-            export_file = args[i + 1]
-            i += 2
-
-        else:
-            print(f"Unknown argument: {args[i]}")
-            sys.exit(1)
+        match args[i]:
+            case "--limit":
+                limit = int(args[i + 1])
+                i += 2
+            case "--club":
+                club = args[i + 1]
+                i += 2
+            case "--sort":
+                sort_type = args[i + 1]
+                i += 2
+            case "--export":
+                export_file = args[i + 1]
+                i += 2
+            case _:
+                print(f"Unknown argument: {args[i]}")
+                sys.exit(1)
 
     return filename, limit, club, sort_type, export_file
-
-
-
-# Program entrypoint
-
+# --------------
+# Main code entrypoint area
+# --------------
 def main():
     filename, limit, club, sort_type, export_file = parse_arguments()
-
     players = load_players(filename)
 
-    # Apply club filter if needed
+    # Apply an optional club filter
     filtered_players = apply_club_filter(players, club)
 
-    if len(filtered_players) == 0:
-        print("No players.csv match your filter.")
+    if not filtered_players:
+        print("No players match your filter.")
         sys.exit(0)
 
-    outfile = open(export_file, "w") if export_file else None
+    outfile = open(export_file, "w", encoding="utf-8") if export_file else None
 
+    # Produces the ranking and a club summary
     print_ranking(filtered_players, sort_type, limit, outfile)
     print_club_summary(filtered_players, outfile)
 
